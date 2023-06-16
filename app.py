@@ -89,7 +89,7 @@ def train_model():
 
         data['Month'] = data['Month'].map(monthDic)
         df_train, df_test = train_test_split(
-            data, train_size=0.8, random_state=100)
+            data, train_size=0.7, random_state=100)
         # print("y_train")
 
         y_train = df_train['budgetvalue'] # type: ignore
@@ -153,6 +153,7 @@ def get_forecast():
         #     abort(404, "The file   does not exist.")
 
         qfmodel = pickle.load(open('model.pkl', 'rb'))
+        
         validation_data = sqlCall(
             '2022', 'All', 'All', 'All', 'All', 'All', 'All',25,1)
         validation_data["FiscalYear"] = validation_data["FiscalYear"].astype(
